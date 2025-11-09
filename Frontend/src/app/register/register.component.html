@@ -1,0 +1,143 @@
+<form [formGroup]="profileForm" (submit)="register()" autocomplete="off">
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.firstName.invalid &&
+        profileForm.controls.firstName.touched
+      "
+      type="text"
+      class="form-control"
+      formControlName="firstName"
+      placeholder="First name"
+      required
+    />
+    <label>First Name</label>
+    <div class="invalid-feedback">firstName is required.</div>
+  </div>
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.lastName.invalid &&
+        profileForm.controls.lastName.touched
+      "
+      type="text"
+      class="form-control"
+      formControlName="lastName"
+      placeholder="Last name"
+      required
+    />
+    <label>Last Name</label>
+    <div class="invalid-feedback">Last Name is required.</div>
+  </div>
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.knownAs.invalid &&
+        profileForm.controls.knownAs.touched
+      "
+      type="text"
+      class="form-control"
+      formControlName="knownAs"
+      placeholder="Last name"
+      required
+    />
+    <label> knownAs</label>
+    <div class="invalid-feedback">knownAs is required.</div>
+  </div>
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.password.invalid &&
+        profileForm.controls.password.touched
+      "
+      type="password"
+      class="form-control"
+      formControlName="password"
+      placeholder="Password"
+      required
+    />
+    <label>Password</label>
+    <div class="invalid-feedback">Password is required.</div>
+  </div>
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.email.invalid && profileForm.controls.email.touched
+      "
+      type="email"
+      class="form-control"
+      formControlName="email"
+      placeholder="Email"
+      required
+    />
+    <label>Email</label>
+    <div class="invalid-feedback">Email is required.</div>
+  </div>
+  <div class="mb-3 form-floating">
+    <select class="form-select" formControlName="gender" id="gender">
+      <option value="" disabled selected>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <label for="gender">Gender</label>
+    <div class="invalid-feedback">Gender is required.</div>
+  </div>
+
+  <app-datepicker
+    [label]="'Date of birth'"
+    [formControl]="$any(profileForm.controls['dateOfBirth'])"
+  ></app-datepicker>
+
+  <!-- <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.dateOfBirth.invalid &&
+        profileForm.controls.dateOfBirth.touched
+      "
+      type="date"
+      class="form-control"
+      formControlName="dateOfBirth"
+      placeholder="Date of birth"
+    />
+    <label>Date of birth</label>
+  </div> -->
+
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.city.invalid && profileForm.controls.city.touched
+      "
+      type="text"
+      class="form-control"
+      formControlName="city"
+      placeholder="City"
+    />
+    <label>City</label>
+  </div>
+  <div class="mb-3 form-floating">
+    <input
+      [class.is-invalid]="
+        profileForm.controls.country.invalid &&
+        profileForm.controls.country.touched
+      "
+      type="text"
+      class="form-control"
+      formControlName="country"
+      placeholder="Country"
+    />
+    <label>Country</label>
+  </div>
+
+  <div class="form-group text-center">
+    <button
+      class="btn btn-success me-2"
+      [disabled]="!profileForm.valid"
+      type="submit"
+    >
+      Register
+    </button>
+    <button class="btn btn-success me-2" (click)="cancel()" type="button">
+      cancel
+    </button>
+  </div>
+</form>

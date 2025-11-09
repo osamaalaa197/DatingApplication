@@ -1,0 +1,80 @@
+@if (member) {
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <img
+        src="{{ member.photoUrl }}"
+        alt="{{ member.username }}"
+        class="card-img"
+      />
+      <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{ member.city }},{{ member.country }}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{ member.age }}</p>
+        </div>
+        <div>
+          <strong>Last Active:</strong>
+          <p>{{ member.lastActive }}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{ member.createdOn }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          form="editForm"
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!editForm.dirty"
+        >
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <tabset class="member-tabs">
+      <tab heading="About {{ member.username }} ">
+        <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
+          <h4>introduction</h4>
+          <textarea
+            [(ngModel)]="member.introduction"
+            name="introduction"
+            rows="6"
+          ></textarea>
+          <h4>Looking for</h4>
+          <textarea
+            [(ngModel)]="member.lookingFor"
+            name="lookingFor"
+            rows="6"
+          ></textarea>
+          <h4>Interests</h4>
+          <textarea
+            [(ngModel)]="member.interests"
+            name="interests"
+            rows="6"
+          ></textarea>
+          <h4>City</h4>
+          <input [(ngModel)]="member.city" name="city" />
+          <h4>country</h4>
+          <input [(ngModel)]="member.country" name="country" />
+        </form>
+      </tab>
+      <tab heading="Photos">
+        <h4>Photos</h4>
+        <app-photo-editor
+          [member]="member"
+          (updatedMember)="loadchangedMember($event)"
+        >
+        </app-photo-editor>
+      </tab>
+      <!-- You can add more tabs here if needed -->
+    </tabset>
+  </div>
+</div>
+}

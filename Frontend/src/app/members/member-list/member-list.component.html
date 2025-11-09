@@ -1,0 +1,13 @@
+<div class="row">
+  @for (item of data; track item.id) {
+  <div class="col-2">
+    <app-member-cart [member]="item"></app-member-cart>
+  </div>
+  }
+</div>
+
+<pagination
+  [totalItems]="totalCount"
+  (pageChanged)="onPageChange($event.page)"
+  [itemsPerPage]="pageSize"
+></pagination>
